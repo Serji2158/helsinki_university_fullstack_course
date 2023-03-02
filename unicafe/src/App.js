@@ -10,25 +10,24 @@ const Title = ({ text }) => (
   <h2>{text}</h2>
 )
   
-const Bullet = ({ text, counter, props }) => (
+const StatisticLine = ({ text, value, props }) => (
   <div >
-    <p>{text}: {counter} {props}</p>
-  </div>
-  
+    <p>{text}: {value} {props}</p>
+  </div>  
 )
 
 const Statistics = ({text, good, neutral, bad, total, average, positive}) => {
   return (
     <>
       <Title text={text} />
-      <Bullet text="GOOD" counter={good} />
-      <Bullet text="NEUTRAL" counter={neutral}/>
-      <Bullet text="BAD" counter={bad} />
-      <Bullet text="TOTAL" counter={total} />
-      <Bullet text="AVERAGE" counter={average} />
-      <Bullet text="POSITIVE" props="%" counter={positive} />
+      <StatisticLine text="GOOD" value={good} />
+      <StatisticLine text="NEUTRAL" value={neutral}/>
+      <StatisticLine text="BAD" value={bad} />
+      <StatisticLine text="TOTAL" value={total} />
+      <StatisticLine text="AVERAGE" value={average} />
+      <StatisticLine text="POSITIVE" props="%" value={positive} />
     </>      
-)
+  )
 }
   
 

@@ -10,23 +10,62 @@ const Title = ({ text }) => (
   <h2>{text}</h2>
 )
   
-const StatisticLine = ({ text, value, props }) => (
-  <div >
-    <p>{text}: {value} {props}</p>
-  </div>  
-)
+// const StatisticLine = ({ text, value, props }) => (
+//   <div >
+//     <p>{text}: {value} {props}</p>
+//   </div>  
+// )
+
+// const Statistics = ({text, good, neutral, bad, total, average, positive}) => {
+//   return (
+//     <>
+//       <Title text={text} />
+//       <StatisticLine text="GOOD" value={good} />
+//       <StatisticLine text="NEUTRAL" value={neutral}/>
+//       <StatisticLine text="BAD" value={bad} />
+//       <StatisticLine text="TOTAL" value={total} />
+//       <StatisticLine text="AVERAGE" value={average} />
+//       <StatisticLine text="POSITIVE" props="%" value={positive} />
+//     </>      
+//   )
+// }
 
 const Statistics = ({text, good, neutral, bad, total, average, positive}) => {
   return (
     <>
-      <Title text={text} />
-      <StatisticLine text="GOOD" value={good} />
-      <StatisticLine text="NEUTRAL" value={neutral}/>
-      <StatisticLine text="BAD" value={bad} />
-      <StatisticLine text="TOTAL" value={total} />
-      <StatisticLine text="AVERAGE" value={average} />
-      <StatisticLine text="POSITIVE" props="%" value={positive} />
-    </>      
+    <Title text={text} />
+    <table>
+      {/* <caption>
+        Statistics
+      </caption> */}      
+      <tbody>
+        <tr>
+          <td>GOOD</td>
+          <td>{good}</td>
+        </tr>
+        <tr>
+          <td>NEUTRAL</td>
+          <td>{neutral}</td>
+        </tr>
+        <tr>
+          <td>BAD</td>
+          <td>{bad}</td>
+        </tr>
+        <tr>
+          <td>TOTAL</td>
+          <td>{total}</td>
+        </tr>
+        <tr>
+          <td>AVERAGE</td>
+          <td>{average}</td>
+        </tr>
+        <tr>
+          <td>POSITIVE</td>
+          <td>{positive}%</td>
+        </tr>
+      </tbody>      
+      </table>
+    </>  
   )
 }
   
@@ -55,7 +94,16 @@ const App = () => {
       <Button onClick={handleClickGood} text="GOOD" />
       <Button onClick={handleClickNeutral} text="NEUTRAL" />
       <Button onClick={handleClickBad} text="BAD" />
-      {total ? (
+      <Statistics 
+        text="Statistics"
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        total={total}
+        average={average}
+        positive={positive}
+      />
+      {/* {total ? (
         <Statistics
         text="Statistics"
         good={good}
@@ -68,7 +116,7 @@ const App = () => {
       ) :
         (
           <Title text="No any feedback given yet" />
-      )}
+      )} */}
       
       {/* <Title text="Statistics" />
       <Bullet text="GOOD" counter={good} />

@@ -10,9 +10,9 @@ const Title = ({ text }) => (
   <h2>{text}</h2>
 )
   
-const Bullet = ({ text, counter }) => (
+const Bullet = ({ text, counter, props }) => (
   <div >
-    <p>{text}: {counter}</p>
+    <p>{text}: {counter} {props}</p>
   </div>
   
 )
@@ -29,6 +29,11 @@ const App = () => {
    
   const handleClickBad = () => setBad(bad + 1)    
    
+  const total = good + neutral + bad
+
+  const average = (good - bad)/total
+
+  const positive = (good / total) * 100
   
   return (
     <div>
@@ -39,7 +44,10 @@ const App = () => {
       <Title text="Statistics" />
       <Bullet text="GOOD" counter={good} />
       <Bullet text="NEUTRAL" counter={neutral}/>
-      <Bullet text="BAD" counter={bad}/>
+      <Bullet text="BAD" counter={bad} />
+      <Bullet text="TOTAL" counter={total} />
+      <Bullet text="AVERAGE" counter={average} />
+      <Bullet text="POSITIVE" props="%" counter={positive} />
     </div>
   )
 }

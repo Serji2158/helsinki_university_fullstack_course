@@ -17,6 +17,21 @@ const Bullet = ({ text, counter, props }) => (
   
 )
 
+const Statistics = ({text, good, neutral, bad, total, average, positive}) => {
+  return (
+    <>
+      <Title text={text} />
+      <Bullet text="GOOD" counter={good} />
+      <Bullet text="NEUTRAL" counter={neutral}/>
+      <Bullet text="BAD" counter={bad} />
+      <Bullet text="TOTAL" counter={total} />
+      <Bullet text="AVERAGE" counter={average} />
+      <Bullet text="POSITIVE" props="%" counter={positive} />
+    </>      
+)
+}
+  
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -31,9 +46,9 @@ const App = () => {
    
   const total = good + neutral + bad
 
-  const average = (good - bad)/total
+  const average = (good - bad)/total || 0
 
-  const positive = (good / total) * 100
+  const positive = (good / total) * 100 || 0
   
   return (
     <div>
@@ -41,13 +56,22 @@ const App = () => {
       <Button onClick={handleClickGood} text="GOOD" />
       <Button onClick={handleClickNeutral} text="NEUTRAL" />
       <Button onClick={handleClickBad} text="BAD" />
-      <Title text="Statistics" />
+      <Statistics
+        text="Statistics"
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        total={total}
+        average={average}
+        positive={positive}
+      />
+      {/* <Title text="Statistics" />
       <Bullet text="GOOD" counter={good} />
       <Bullet text="NEUTRAL" counter={neutral}/>
       <Bullet text="BAD" counter={bad} />
       <Bullet text="TOTAL" counter={total} />
       <Bullet text="AVERAGE" counter={average} />
-      <Bullet text="POSITIVE" props="%" counter={positive} />
+      <Bullet text="POSITIVE" props="%" counter={positive} /> */}
     </div>
   )
 }

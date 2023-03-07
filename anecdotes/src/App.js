@@ -1,5 +1,16 @@
 import { useState } from 'react'
 
+const Title = ({ text }) => (
+  <h2>{text}</h2>
+)
+
+const AnecdoteLine = ({ text, value }) => (
+  <div >
+    {text}
+      <p> Has {value} votes </p>
+  </div>  
+)
+
 const Button = ({ text, onClick }) => {
   return (
     <>
@@ -35,20 +46,21 @@ const App = () => {
     copyVotesArray[selected] += 1
     setVotes(copyVotesArray)
   }
-  console.log(selected)
-  console.log(votes[selected])
-  console.log(votes)
+  
+  const getMaxOfArray = (numArray) => Math.max.apply(null, numArray)
+
+  const maxVote = getMaxOfArray(votes)
+
+  const mostVotedAnecdote = anecdotes[votes.indexOf(maxVote)]
 
   return (
     <div>
-      <div>
-        {anecdotes[selected]}
-        <p>
-          Has {votes[selected]} votes
-        </p>
-      </div>  
+      <Title text="Anecdote of the day" />
+      <AnecdoteLine text={anecdotes[selected]} value={votes[selected]} />
       <Button text="VOTE" onClick={handleClickVote} />
       <Button text="NEXT ANECDOTE" onClick={handleClickSelected} />
+      <Title text="Anecdote with the most votes" />
+      <AnecdoteLine text={mostVotedAnecdote} value={maxVote} />
     </div>
   )
 }
